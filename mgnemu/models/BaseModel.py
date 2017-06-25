@@ -13,6 +13,9 @@ import json
 
 class BaseModel():
 
+    def __init__(self):
+        pass
+
     def dumps(self, object_data):
         return json.dumps(object_data)
 

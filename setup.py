@@ -18,7 +18,7 @@ setup(
         'Programming Language :: Python :: 2.7'
     ],
     keywords='mgnemu MG-N707TS emulator',
-    packages=find_packages(exclude=['tests*']),
+    packages=['mgnemu'],
     install_requires=[
         'Flask'
     ]

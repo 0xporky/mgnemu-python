@@ -5,7 +5,7 @@ Model of payment types, needed when client pays for purchase.
 
 """
 
-from . import BaseModel
+from .BaseModel import BaseModel
 
 
 class PaymentType(BaseModel):
@@ -42,7 +42,7 @@ class PaymentType(BaseModel):
         return super(PaymentType, self).dumps(self_dict)
 
     def loads(self, json_data):
-        self_dict = super(PaymentType, self).loads(json_data)
+        self_dict = BaseModel.loads(self, json_data)
 
         if 'card' in self_dict.keys():
             self.__card = self_dict['card']
