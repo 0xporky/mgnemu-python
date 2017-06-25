@@ -5,7 +5,7 @@ Model of payment types, needed when client pays for purchase.
 
 """
 
-from .BaseModel import BaseModel
+from base_model import BaseModel
 
 
 class PaymentType(BaseModel):

@@ -5,7 +5,7 @@ Testing payment type model.
 
 """
 
-from mgnemu.models import PaymentType
+from mgnemu.models.payment_type import PaymentType
 from unittest import TestCase
 
 
@@ -16,7 +16,7 @@ class TestPaymentType(TestCase):
             "rrn" : "3", "card" : "4" }'
 
     def test_loads_json(self):
-        model = PaymentType.PaymentType()
+        model = PaymentType()
         model.loads(self.json_data)
 
         assert(model.sum == 1)
