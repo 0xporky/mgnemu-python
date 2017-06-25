@@ -13,8 +13,8 @@ import json
 
 class BaseModel():
 
-    def dumps(object_data):
+    def dumps(self, object_data):
         return json.dumps(object_data)
 
-    def loads(json_data):
+    def loads(self, json_data):
         return json.loads(json_data)
