@@ -10,11 +10,20 @@ from base_model import BaseModel
 
 class PaymentType(BaseModel):
 
-    def __init__(self):
-        self.__sum = 0
-        self.__no = 0
-        self.__rrn = ''
-        self.__card = ''
+    def __init__(self, data):
+        BaseModel.__init__(self, 'P')
+        self.__sum = data['sum']
+        self.__no = data['no']
+
+        if 'rrn' in data.keys():
+            self.__rrn = data['rrn']
+        else:
+            self.__rrn = ''
+
+        if 'card' in data.keys():
+            self.__card = data['card']
+        else:
+            self.__card = ''
 
     @property
     def sum(self):
@@ -33,28 +42,11 @@ class PaymentType(BaseModel):
         return self.__card
 
     def dumps(self):
-        self_dict = {
-            'sum': self.__sum,
-            'no': self.__no,
-            'rrn': self.__rrn,
-            'card': self.__card
+        return {
+            self.model_type: {
+                'sum': self.__sum,
+                'no': self.__no,
+                'rrn': self.__rrn,
+                'card': self.__card
+            }
         }
-        return BaseModel.dumps(self, self_dict)
-
-    def loads(self, json_data):
-        self_dict = BaseModel.loads(self, json_data)
-
-        self.loads_dict(self_dict)
-
-    def loads_dict(self, dict_data):
-        if 'card' in dict_data.keys():
-            self.__card = dict_data['card']
-
-        if 'no' in dict_data.keys():
-            self.__no = dict_data['no']
-
-        if 'sum' in dict_data.keys():
-            self.__sum = dict_data['sum']
-
-        if 'rrn' in dict_data.keys():
-            self.__rrn = dict_data['rrn']

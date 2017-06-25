@@ -8,16 +8,15 @@ Contains to basic methods:
 
 """
 
-import json
-
 
 class BaseModel():
 
-    def __init__(self):
-        pass
+    def __init__(self, model_type):
+        self.__type = model_type
+
+    @property
+    def model_type(self):
+        return self.__type
 
     def dumps(self, object_data):
-        return json.dumps(object_data)
-
-    def loads(self, json_data):
-        return json.loads(json_data)
+        pass
