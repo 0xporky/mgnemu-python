@@ -50,17 +50,20 @@ class CheckLine(BaseModel):
     def loads(self, json_data):
         self_dict = BaseModel.loads(self, json_data)
 
-        if 'qty' in self_dict.keys():
-            self.__qty = self_dict['qty']
+        self.loads_dict(self_dict)
 
-        if 'price' in self_dict.keys():
-            self.__price = self_dict['price']
+    def loads_dict(self, dict_data):
+        if 'qty' in dict_data.keys():
+            self.__qty = dict_data['qty']
 
-        if 'name' in self_dict.keys():
-            self.__name = self_dict['name']
+        if 'price' in dict_data.keys():
+            self.__price = dict_data['price']
 
-        if 'code' in self_dict.keys():
-            self.__code = self_dict['code']
+        if 'name' in dict_data.keys():
+            self.__name = dict_data['name']
 
-        if 'tax' in self_dict.keys():
-            self.__tax = self_dict['tax']
+        if 'code' in dict_data.keys():
+            self.__code = dict_data['code']
+
+        if 'tax' in dict_data.keys():
+            self.__tax = dict_data['tax']

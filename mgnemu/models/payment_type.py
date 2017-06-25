@@ -44,14 +44,17 @@ class PaymentType(BaseModel):
     def loads(self, json_data):
         self_dict = BaseModel.loads(self, json_data)
 
-        if 'card' in self_dict.keys():
-            self.__card = self_dict['card']
+        self.loads_dict(self_dict)
 
-        if 'no' in self_dict.keys():
-            self.__no = self_dict['no']
+    def loads_dict(self, dict_data):
+        if 'card' in dict_data.keys():
+            self.__card = dict_data['card']
 
-        if 'sum' in self_dict.keys():
-            self.__sum = self_dict['sum']
+        if 'no' in dict_data.keys():
+            self.__no = dict_data['no']
 
-        if 'rrn' in self_dict.keys():
-            self.__rrn = self_dict['rrn']
+        if 'sum' in dict_data.keys():
+            self.__sum = dict_data['sum']
+
+        if 'rrn' in dict_data.keys():
+            self.__rrn = dict_data['rrn']

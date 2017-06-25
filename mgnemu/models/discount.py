@@ -31,9 +31,11 @@ class Discount(BaseModel):
 
     def loads(self, json_data):
         self_dict = BaseModel.loads(self, json_data)
+        self.loads_dict(self_dict)
 
-        if 'prc' in self_dict.keys():
-            self.__prc = self_dict['prc']
+    def loads_dict(self, dict_data):
+        if 'prc' in dict_data.keys():
+            self.__sum = dict_data['sum']
 
-        if 'sum' in self_dict.keys():
-            self.__sum = self_dict['sum']
+        if 'sum' in dict_data.keys():
+            self.__prc = dict_data['prc']
