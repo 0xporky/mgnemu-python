@@ -1,1 +1,3 @@
 *.pyc
+.tox/
+mgnemu.egg-info/
