@@ -39,7 +39,7 @@ class PaymentType(BaseModel):
             'rrn': self.__rrn,
             'card': self.__card
         }
-        return super(PaymentType, self).dumps(self_dict)
+        return BaseModel.dumps(self, self_dict)
 
     def loads(self, json_data):
         self_dict = BaseModel.loads(self, json_data)
