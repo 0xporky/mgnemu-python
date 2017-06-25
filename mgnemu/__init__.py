@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import app, models
+from . import app, models, controllers

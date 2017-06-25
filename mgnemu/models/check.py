@@ -6,14 +6,12 @@ Model of check, needed when client pays for purchase.
 """
 
 from base_model import BaseModel
-from json import loads
 from model_fabric import ModelFabric
 
 
 class Check(BaseModel):
 
-    def __init__(self, json_data):
-        data = loads(json_data)
+    def __init__(self, data):
 
         if 'F' in data.keys():
             BaseModel.__init__(self, 'F')

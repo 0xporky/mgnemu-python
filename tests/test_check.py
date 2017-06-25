@@ -7,6 +7,7 @@ Testing check line model.
 
 from mgnemu.models.check import Check
 from unittest import TestCase
+import json
 
 
 class TestCheck(TestCase):
@@ -60,7 +61,7 @@ class TestCheck(TestCase):
     ] }'
 
     def test_loads_json(self):
-        model = Check(self.json_data)
+        model = Check(json.loads(self.json_data))
 
         assert(model.check_type == 'F')
 
