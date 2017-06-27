@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*
 
-from mgnemu.models.check import Check
+from models.check import Check
 from tempfile import gettempdir
 from json import loads
 from json import dumps
