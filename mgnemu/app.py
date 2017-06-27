@@ -2,7 +2,7 @@
 
 from flask import Flask
 from flask import request
-from controllers.check_tape import CheckTape
+from mgnemu.controllers.check_tape import CheckTape
 
 app = Flask(__name__)
 
