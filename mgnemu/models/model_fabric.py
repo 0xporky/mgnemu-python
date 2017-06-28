@@ -8,6 +8,7 @@ Model fabric is used to generate modles.
 from discount import Discount
 from payment_type import PaymentType
 from check_line import CheckLine
+from check_comment import CheckComment
 
 
 class ModelFabric():
@@ -22,5 +23,7 @@ class ModelFabric():
             return CheckLine(data['S'])
         elif 'P' in data.keys():
             return PaymentType(data['P'])
+        elif 'C' in data.keys():
+            return CheckComment(data['C'])
         else:
             raise KeyError(u'Unknown model key')
