@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*
 
 from mgnemu.models.check import Check
+from mgnemu.models.cash_operation import CashOperation
 from tempfile import gettempdir
 from json import loads
 from json import dumps
@@ -39,7 +40,10 @@ class CheckTape():
             remove(check_tape_file)
 
     def add_check(self, json_data):
-        check = Check(json_data)
+        if 'IO' in json_data.keys():
+            check = CashOperation(json_data)
+        else:
+            check = Check(json_data)
         check_tape_json = self.__read_check_tape()
         if len(check_tape_json) == 0:
             check_tape = []

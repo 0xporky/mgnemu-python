@@ -13,11 +13,13 @@ class TestCheckComment(TestCase):
 
     def setUp(self):
         self.json_data = {
-            'IO': {
-                'IO': {
-                    'sum': 30
+            'IO': [
+                {
+                    'IO': {
+                        'sum': 30
+                    }
                 }
-            }
+            ]
         }
 
     def test_loads_json(self):
@@ -25,6 +27,8 @@ class TestCheckComment(TestCase):
 
         data_line = model.dumps()
         dataIO = data_line['IO']
-        data = dataIO['IO']
+        print(dataIO)
+        data_list = dataIO[0]
+        data = data_list['IO']
 
         assert(data['sum'] == 30)
