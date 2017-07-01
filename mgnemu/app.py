@@ -20,13 +20,13 @@ def get_pw(username):
 @auth.generate_nonce
 def generate_nonce():
 # TODO: we need add clear auth
-    pass
+    return urandom(8).encode('hex')
 
 
 @auth.generate_opaque
 def generate_opaque():
 # TODO: we need add clear auth
-    pass
+    return urandom(8).encode('hex')
 
 @auth.verify_nonce
 def verify_nonce(nonce):
