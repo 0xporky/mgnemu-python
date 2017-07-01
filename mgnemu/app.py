@@ -29,6 +29,10 @@ def add_check():
 
 @app.route('/cgi/proc/printreport', methods=['GET'])
 def print_orders():
+    if '10' in request.args.keys():
+        ct = CheckTape()
+        return ct.payments
+
     if '0' in request.args.keys():
         ct = CheckTape()
         ct.print_z_order()
