@@ -88,6 +88,8 @@ class CheckTape():
         check_tape.append(check.dumps())
         self.__write_check_tape(check_tape)
 
+        return dumps(check.dumps())
+
     def print_z_order(self):
         self.__delete_chack_tape()
         self.__delete_payment_operations()

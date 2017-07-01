@@ -23,8 +23,7 @@ def get_pay_sums():
 def add_check():
     result = request.get_json(force=True)
     ct = CheckTape()
-    ct.add_check(result)
-    return ' { "Status" : "ok" }'
+    return ct.add_check(result).decode('unicode-escape')
 
 
 @app.route('/cgi/proc/printreport', methods=['GET'])
