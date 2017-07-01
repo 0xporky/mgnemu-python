@@ -23,6 +23,7 @@ class CheckComment(BaseModel):
 
     def dumps(self):
         return {
+            'id': BaseModel.check_id(),
             self.model_type: {
                 'cm': self.__cm,
             }

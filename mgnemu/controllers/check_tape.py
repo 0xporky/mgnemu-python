@@ -8,6 +8,7 @@ from os import remove
 from mgnemu.models.check import Check
 from mgnemu.models.cash_operation import CashOperation
 from mgnemu.models.payment_operations import PaymentOperations
+from mgnemu.models.base_model import BaseModel
 
 
 class CheckTape():
@@ -90,6 +91,7 @@ class CheckTape():
     def print_z_order(self):
         self.__delete_chack_tape()
         self.__delete_payment_operations()
+        BaseModel.reset_id()
 
     @property
     def check_tape(self):
