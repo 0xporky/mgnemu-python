@@ -20,6 +20,7 @@ setup(
     keywords='mgnemu MG-N707TS emulator',
     packages=find_packages(exclude=['tests*']),
     install_requires=[
-        'Flask'
+        'Flask',
+        'docopt'
     ]
 )
