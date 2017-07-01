@@ -18,6 +18,17 @@ class PaymentOperations():
         self.__sum3 = 0
         self.__sum4 = 0
 
+    def load_data(self, data):
+        for obj in data:
+            if obj['no'] == 1:
+                self.__sum1 = obj['sum']
+            if obj['no'] == 2:
+                self.__sum2 = obj['sum']
+            if obj['no'] == 3:
+                self.__sum3 = obj['sum']
+            if obj['no'] == 4:
+                self.__sum4 = obj['sum']
+
     def __add_sum(self, pay_num, sum):
         if pay_num == 1:
             self.__sum1 += sum
@@ -27,6 +38,7 @@ class PaymentOperations():
             self.__sum3 += sum
         if pay_num == 4:
             self.__sum4 += sum
+
     def dumps(self):
         return [
             {

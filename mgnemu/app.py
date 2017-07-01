@@ -13,6 +13,12 @@ def get_check_tape():
     return ct.check_tape.decode('unicode-escape')
 
 
+@app.route('/cgi/rep/pay', methods=['GET'])
+def get_pay_sums():
+    ct = CheckTape()
+    return ct.payments
+
+
 @app.route('/cgi/chk', methods=['POST'])
 def add_check():
     result = request.get_json(force=True)
