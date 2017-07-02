@@ -62,14 +62,16 @@ class PaymentOperations():
     def add_check(self, check):
         if isinstance(check, Check):
             dumps = check.dumps()
+            sign = 1
             if 'F' in dumps.keys():
                 dump = dumps['F']
             elif 'R' in dumps.keys():
                 dump = dumps['R']
+                sign = -1
             else:
                 return
             nums = [ cr['P']['no'] for cr in dump if 'P' in cr.keys() ]
-            sums = [ cr['P']['sum'] for cr in dump if 'P' in cr.keys() ]
+            sums = [ sign * cr['P']['sum'] for cr in dump if 'P' in cr.keys() ]
             map(self.__add_sum, nums, sums)
         if isinstance(check, CashOperation):
            dump = check.dumps()
