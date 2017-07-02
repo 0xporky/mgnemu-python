@@ -21,7 +21,9 @@ class Check(BaseModel):
             raise KeyError(u'Unknown check key error')
 
         fabric = ModelFabric()
-        self.__data = [fabric.get_model(val) for val in data[self.model_type]]
+        self.__data = [fabric.get_model(val)
+                       for val in data[self.model_type]
+                       if fabric.get_model(val) is not None]
 
     @property
     def check_type(self):

@@ -26,4 +26,4 @@ class ModelFabric():
         elif 'C' in data.keys():
             return CheckComment(data['C'])
         else:
-            raise KeyError(u'Unknown model key')
+            return None

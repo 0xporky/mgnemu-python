@@ -15,6 +15,12 @@ class TestCheck(TestCase):
     def setUp(self):
         self.json_data = u'{ \
             "F": [ { \
+                "N": \
+                { \
+                    "cm": "test" \
+                } \
+            }, \
+            { \
                 "S": { \
                     "code": 126196, \
                     "name": "126196 Жорсткий диск Toshiba", \
