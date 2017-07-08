@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-
+MAINTAINER Andrew Komar 0xporky@gmail.com
 EXPOSE 80
 
 COPY . /root/
