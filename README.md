@@ -28,3 +28,17 @@ For more info see:
 ```bash
 ./bin/mgnemu --help
 ```
+
+## Run the emulator using docker image ##
+1. Clone docker image using the command:
+```bash
+docker pull 0xporky/mgnemu-python
+```
+2. After pulling the image you need to start container with command:
+```bash
+docker run -d -p 80:80 0xporky/mgnemu-python
+```
+That command will run the emulator with parameters:
+```bash
+./bin/mgnemu --host=0.0.0.0
+```
