@@ -1,6 +1,8 @@
 # mgnemu
 
 [![Build Status](https://travis-ci.org/0xporky/mgnemu-python.svg?branch=master)](https://travis-ci.org/0xporky/mgnemu-python)
+[![Docker Automated buil](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/0xporky/mgnemu-python/builds/)
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat)](http://badges.mit-license.org)
 
 **Software emulator of MG-N707TS cash machime.**
 
