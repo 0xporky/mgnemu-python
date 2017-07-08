@@ -11,4 +11,4 @@ RUN apt-get update \
 && pip install -e . \
 && apt-get purge -y python-pip
 
-CMD["./bin/mgnemu"]
+CMD ["./bin/mgnemu"]
