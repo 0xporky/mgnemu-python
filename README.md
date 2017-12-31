@@ -16,31 +16,16 @@ git clone https://github.com/0xporky/mgnemu-python.git
 pip install -e .
 ```
 
-## Starting the emulator ##
-After installation you can run the emulator from mgnemu-python catalog using commad.
-```bash
-./bin/mgnemu
-```
-Also you can use some command line parameters to customise emultor networking:
-* --port=port
-* --host=host
-* --debug=debug
-
-For more info see:
-```bash
-./bin/mgnemu --help
-```
-
-## Run the emulator using docker image ##
+## Run the emulator using docker compose ##
 1. Clone docker image using the command:
 ```bash
 docker pull 0xporky/mgnemu-python
 ```
-2. After pulling the image you need to start container with command:
+2. After pulling the image you need to move into mgnemu-python:
 ```bash
-docker run -d -p 80:80 0xporky/mgnemu-python
+cd ./mgnemu-python
 ```
-That command will run the emulator with parameters:
+3. Then you need to start emulating process using docker compose:
 ```bash
-./bin/mgnemu --host=0.0.0.0
+docker-compose up -d
 ```
