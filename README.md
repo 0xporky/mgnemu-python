@@ -29,3 +29,4 @@ cd ./mgnemu-python
 ```bash
 docker-compose up -d
 ```
+Container will be enabled on port 5005.
