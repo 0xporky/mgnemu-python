@@ -1,69 +1,44 @@
 # -*- coding: utf-8 -*
 
-from tempfile import gettempdir
 from json import loads
 from json import dumps
-from os import path
-from os import remove
 from mgnemu.models.check import Check
 from mgnemu.models.cash_operation import CashOperation
 from mgnemu.models.payment_operations import PaymentOperations
 from mgnemu.models.base_model import BaseModel
+from mgnemu.controllers.db_controller import DbController
 
 
-class CheckTape():
+class CheckTape(object):
 
-    def __init__(self):
-        pass
-
-    def __get_check_file(self):
-        tmp_dir = gettempdir()
-        return '/'.join([tmp_dir, 'tape.txt'])
-
-    def __get_payment_file(self):
-        tmp_dir = gettempdir()
-        return '/'.join([tmp_dir, 'payment_operations.txt'])
+    def __init__(self, ap:'Argument parser'):
+        self.ap = ap
 
     def __read_check_tape(self):
-        check_tape_file = self.__get_check_file()
-        if path.exists(check_tape_file):
-            with open(check_tape_file, 'r') as f:
-                check_tape_json = f.read()
-                return check_tape_json
-
-        return '[]'
+        with DbController(self.ap) as db:
+            return dumps(db.check_tape())
 
     def __read_payment_operations(self):
-        payment_file = self.__get_payment_file()
-        if path.exists(payment_file):
-            with open(payment_file, 'r') as f:
-                payment_json = f.read()
-                return payment_json
-
-        return '[]'
+        with DbController(self.ap) as db:
+            return dumps(db.payment_operations())
 
     def __write_check_tape(self, check_tape):
-        check_tape_file = self.__get_check_file()
-        with open(check_tape_file, 'w+') as f:
-            f.write(dumps(check_tape))
+        with DbController(self.ap) as db:
+            db.write_check_tape(check_tape)
 
     def __write_payment_operations(self, p_operations):
-        payment_file = self.__get_payment_file()
-        with open(payment_file, 'w+') as f:
-            f.write(dumps(p_operations))
+        with DbController(self.ap) as db:
+            db.write_payment_operations(p_operations)
 
     def __delete_chack_tape(self):
-        check_tape_file = self.__get_check_file()
-        if path.exists(check_tape_file):
-            remove(check_tape_file)
+        with DbController(self.ap) as db:
+            db.write_check_tape([])
 
     def __delete_payment_operations(self):
-        p_file = self.__get_payment_file()
-        if path.exists(p_file):
-            remove(p_file)
+        with DbController(self.ap) as db:
+            db.write_payment_operations([])
 
     def add_check(self, json_data):
-
         p = PaymentOperations()
         p_ops = loads(self.__read_payment_operations())
         if len(p_ops):

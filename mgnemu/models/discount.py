@@ -5,15 +5,16 @@ Model of discount, needed when client pays for purchase.
 
 """
 
-from base_model import BaseModel
+from mgnemu.models.base_model import BaseModel
+from mgnemu.models.sales_types import DISCOUNT
 
 
 class Discount(BaseModel):
 
     def __init__(self, data):
-        BaseModel.__init__(self, 'D')
+        BaseModel.__init__(self, DISCOUNT)
         self.__sum = data['sum']
-        if 'prc' in data.keys():
+        if 'prc' in list(data.keys()):
             self.__prc = data['prc']
         else:
             self.__prc = 0

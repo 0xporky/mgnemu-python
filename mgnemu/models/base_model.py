@@ -8,14 +8,16 @@ Contains to basic methods:
 
 """
 
+from mgnemu.models.sales_types import SALES_TYPES
 
-class BaseModel():
+
+class BaseModel(object):
 
     __id = 0
 
     def __init__(self, model_type):
         self.__type = model_type
-        if model_type in ['F', 'R', 'IO']:
+        if model_type in SALES_TYPES:
             BaseModel.inc_id()
 
     @staticmethod
@@ -36,3 +38,6 @@ class BaseModel():
 
     def dumps(self, object_data):
         pass
+
+    def gen_check(self):
+        return {}

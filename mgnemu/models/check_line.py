@@ -5,13 +5,14 @@ Model of check line, needed when client pays for purchase.
 
 """
 
-from base_model import BaseModel
+from mgnemu.models.base_model import BaseModel
+from mgnemu.models.sales_types import CHECK_LINE
 
 
 class CheckLine(BaseModel):
 
     def __init__(self, data):
-        BaseModel.__init__(self, 'S')
+        BaseModel.__init__(self, CHECK_LINE)
         self.__qty = data['qty']
         self.__price = data['price']
         self.__name = data['name']

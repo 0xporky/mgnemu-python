@@ -6,11 +6,11 @@ This table collect all payments that passes through cash machine.
 
 """
 
-from check import Check
-from cash_operation import CashOperation
+from mgnemu.models.check import Check
+from mgnemu.models.cash_operation import CashOperation
 
 
-class PaymentOperations():
+class PaymentOperations(object):
 
     def __init__(self):
         self.__sum1 = 0
@@ -29,15 +29,15 @@ class PaymentOperations():
             if obj['no'] == 4:
                 self.__sum4 = obj['sum']
 
-    def __add_sum(self, pay_num, sum):
+    def __add_sum(self, pay_num, pay_sum):
         if pay_num == 1:
-            self.__sum1 += sum
+            self.__sum1 += pay_sum
         if pay_num == 2:
-            self.__sum2 += sum
+            self.__sum2 += pay_sum
         if pay_num == 3:
-            self.__sum3 += sum
+            self.__sum3 += pay_sum
         if pay_num == 4:
-            self.__sum4 += sum
+            self.__sum4 += pay_sum
 
     def dumps(self):
         return [
@@ -60,24 +60,9 @@ class PaymentOperations():
         ]
 
     def add_check(self, check):
-        if isinstance(check, Check):
-            dumps = check.dumps()
-            sign = 1
-            if 'F' in dumps.keys():
-                dump = dumps['F']
-            elif 'R' in dumps.keys():
-                dump = dumps['R']
-                sign = -1
-            else:
-                return
-            nums = [ cr['P']['no'] for cr in dump if 'P' in cr.keys() ]
-            sums = [ sign * cr['P']['sum'] for cr in dump if 'P' in cr.keys() ]
-            map(self.__add_sum, nums, sums)
-        if isinstance(check, CashOperation):
-           dump = check.dumps()
-           nums = [ 1 for cr in dump['IO'] ]
-           sums = [ cr['IO']['sum'] for cr in dump['IO'] ]
-           map(self.__add_sum, nums, sums)
+        sums = check.gen_check()
+        for pay_num, pay_sum in sums.items():
+            self.__add_sum(pay_num, pay_sum)
 
     @property
     def sum1(self):

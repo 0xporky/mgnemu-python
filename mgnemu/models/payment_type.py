@@ -5,13 +5,14 @@ Model of payment types, needed when client pays for purchase.
 
 """
 
-from base_model import BaseModel
+from mgnemu.models.base_model import BaseModel
+from mgnemu.models.sales_types import PAYMENT
 
 
 class PaymentType(BaseModel):
 
     def __init__(self, data):
-        BaseModel.__init__(self, 'P')
+        BaseModel.__init__(self, PAYMENT)
         self.__sum = data['sum']
         self.__no = data['no']
 

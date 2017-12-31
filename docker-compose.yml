@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+  mgnemu:
+    image: 0xporky/mgnemu-python:latest
+    environment:
+      - HOST=0.0.0.0
+      - PORT=5005
+      - DEBUG=Off
+      - DB_HOST=mongodb
+      - DB_PORT=5006
+      - DB_USER=admin
+      - DB_PASS=password
+    links:
+      - mongodb
+    ports:
+      - "5005:5005"
+
+  mongodb:
+    image: mongo:latest
+    container_name: "mongodb"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=mgn
+    volumes:
+      - ./data/db:/data/db
+    ports:
+      - "5006:27017"
+    command: mongod --smallfiles --logpath=/dev/null
