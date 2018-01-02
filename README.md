@@ -13,7 +13,7 @@ git clone https://github.com/0xporky/mgnemu-python.git
 ```
 2. Move to catalog mgnemu-python and run command.
 ```bash
-pip install -e .
+pip3 install -e .
 ```
 
 ## Run the emulator using docker compose ##
